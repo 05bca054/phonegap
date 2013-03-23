@@ -119,15 +119,19 @@
 							$.each( obj, function( key, value ) {
 									var startdate = new Date(value.start_date);
 									var enddate = new Date(value.target_date);
-									//alert(value.start_date.format("dd/mm/yyyy"));
-									var convertstdt=startdate.getDate()+"/"+startdate.getMonth()+"/"+startdate.getFullYear();
-									var convertenddt=enddate.getDate()+"/"+enddate.getMonth()+"/"+enddate.getFullYear();
+									var startmont=(startdate.getMonth())+1;
+									var convertstdt=startmont+"/"+startdate.getDate()+"/"+startdate.getFullYear();
+									
+									var endmont=(enddate.getMonth())+1;
+									var convertenddt=endmont+"/"+enddate.getDate()+"/"+enddate.getFullYear();
 									var perdone = value.perc_done;
-									//alert("working");
-									g.AddTaskItem(new JSGantt.TaskItem(key, value.title , convertstdt, convertenddt, 'FFA500', '#', 0, value.quantity ,value.location,perdone.toPrecision(4), 0, 1, 1, 1));
-									//alert("working1");
-									//g.AddTaskItem(new JSGantt.TaskItem(key, value.title, value.start_date, value.target_date, 'FFA500', '#', 0, value.quantity,value.location, value.perc_done, 0, 1, 1, 1));
-								});			  			
+									
+									g.AddTaskItem(new JSGantt.TaskItem(value.key, value.title , convertstdt, convertenddt, 'FFA500', '#', 0, value.quantity ,value.location,perdone.toPrecision(4), 0, 1, 1, 1));
+									
+			
+								});	
+								
+                                    
 								 g.Draw();
 								 g.DrawDependencies();
 			  				}
@@ -193,7 +197,7 @@
                     <a id="ganttchart" data-role="button" data-theme="b" href="#page2" data-inline="true">
                     Submit
                 	</a>
-					<a id="home" data-role="button" data-theme="b" href="index.html" data-inline="true" data-ajax="false">
+					<a id="home" data-role="button" data-theme="b" href="app.html" data-inline="true">
                     Home
                 	</a>
                 </div>
